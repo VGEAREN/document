@@ -1,0 +1,28 @@
+
+## Java基础
+
+### Java 语言关键字有哪些？
+
+| 分类 | 关键字 |  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 访问控制 | private | protected | public |  |  |  |  |
+| 类，方法和变量修饰符 | abstract | class | extends | final | implements | interface | native |
+|  | new | static | strictfp | synchronized | transient | volatile | enum |
+| 程序控制 | break | continue | return | do | while | if | else |
+|  | for | instanceof | switch | case | default | assert |  |
+| 错误处理 | try | catch | throw | throws | finally |  |  |
+| 包相关 | import | package |  |  |  |  |  |
+| 基本类型 | boolean | byte | char | double | float | int | long |
+|  | short |  |  |  |  |  |  |
+| 变量引用 | super | this | void |  |  |  |  |
+| 保留字 | goto | const |  |  |  |  |  |
+
+> Tips：所有的关键字都是小写的，在 IDE 中会以特殊颜色显示。
+>
+> `default` 这个关键字很特殊，既属于程序控制，也属于类，方法和变量修饰符，还属于访问控制。
+>
+> - 在程序控制中，当在 `switch` 中匹配不到任何情况时，可以使用 `default` 来编写默认匹配的情况。
+> - 在类，方法和变量修饰符中，从 JDK8 开始引入了默认方法，可以使用 `default` 关键字来定义一个方法的默认实现。
+> - 在访问控制中，如果一个方法前没有任何修饰符，则默认会有一个修饰符 `default`，但是这个修饰符加上了就会报错。
+
+注意 ⚠️：虽然 `true`, `false`, 和 `null` 看起来像关键字但实际上他们是字面值，同时你也不可以作为标识符来使用。

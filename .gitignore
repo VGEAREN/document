@@ -2,4 +2,5 @@ node_modules
 .temp
 .cache
 /.idea/
+dist/
 package-lock.json

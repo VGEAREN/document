@@ -1,12 +1,11 @@
-
 {
-  "name": "vgearen's document",
+  "name": "document",
   "version": "1.0.0",
-  "description": "",
+  "description": "温故知新",
   "author": "vgearen <vgearen@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "vuepress": "^2.0.0-beta.26"
+    "vuepress": "^2.0.0-beta.36"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
