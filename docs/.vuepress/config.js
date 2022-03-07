@@ -28,6 +28,10 @@ module.exports = defineHopeConfig ({
                     plugins: ["highlight", "math", "search", "notes", "zoom"],
                 },
             },
+        },
+        encrypt: {
+            status: 'global',
+            global: '123456'
         }
     },
 
