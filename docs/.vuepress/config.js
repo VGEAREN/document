@@ -16,7 +16,6 @@ module.exports = defineHopeConfig ({
         repo: 'https://github.com/VGEAREN/document',
         repoLabel: 'Github',
         sidebar: sidebar,
-        headingDepth: 5,
         docsDir: "docs",
         docsBranch: 'master',
         plugins: {
