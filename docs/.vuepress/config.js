@@ -30,8 +30,8 @@ module.exports = defineHopeConfig ({
             },
         },
         encrypt: {
-            status: 'global',
-            global: '123456'
+            global: true,
+            admin: ["123456"]
         }
     },
 
