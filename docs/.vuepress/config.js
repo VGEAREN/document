@@ -17,7 +17,18 @@ module.exports = defineHopeConfig ({
         repoLabel: 'Github',
         sidebar: sidebar,
         docsDir: "docs",
-        docsBranch: 'master'
+        docsBranch: 'master',
+        plugins: {
+            copyCode: {
+                showInMobile: true
+            },
+            mdEnhance: {
+                enableAll: false,
+                presentation: {
+                    plugins: ["highlight", "math", "search", "notes", "zoom"],
+                },
+            },
+        }
     },
 
     head: [
