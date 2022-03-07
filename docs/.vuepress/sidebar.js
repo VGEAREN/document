@@ -4,7 +4,7 @@ module.exports = defineSidebarConfig({
             {
                 text: "Java",
                 collapsable: false,
-                children: ["README.md", "springboot.md"],
+                children: ["java.md", "springboot.md"],
             }
             ]
     })
