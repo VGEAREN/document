@@ -36,7 +36,7 @@ module.exports = defineHopeConfig ({
     },
 
     head: [
-        ['link', { rel: 'icon', href: '/favicon.ico' }]
+        ['link', { rel: 'icon', href: '/document/favicon.ico' }]
     ],
     plugins: [
         [
