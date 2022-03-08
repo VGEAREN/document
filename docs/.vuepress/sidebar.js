@@ -57,6 +57,38 @@ module.exports = defineSidebarConfig({
             collapsable: true,
             children: ["redis.md"],
         },
-
+        {
+            prefix: "architecture/",
+            text: "系统架构",
+            collapsable: true,
+            children: [
+                "base.md",
+                {
+                    prefix: "concurrent/",
+                    text: "高并发",
+                    collapsable: true,
+                    children: [
+                        "design.md", "flow-control.md"
+                    ]
+                },
+                {
+                    prefix: "design/",
+                    text: "系统设计",
+                    collapsable: true,
+                    children: [
+                        "recommended.md", "seckill.md", "tinyURL.md"
+                    ]
+                },
+                {
+                    prefix: "distributed/",
+                    text: "分布式",
+                    collapsable: true,
+                    children: [
+                        "cache.md", "consensus.md", "dubbo.md","kafka.md" ,
+                        "lock.md", "mq.md", "rpc.md","transaction.md","zk.md"
+                    ]
+                },
+            ],
+        }
     ]
 })
