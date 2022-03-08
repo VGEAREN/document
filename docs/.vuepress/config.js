@@ -24,6 +24,7 @@ module.exports = defineHopeConfig ({
             },
             mdEnhance: {
                 enableAll: false,
+                tex: true,
                 presentation: {
                     plugins: ["highlight", "math", "search", "notes", "zoom"],
                 },
