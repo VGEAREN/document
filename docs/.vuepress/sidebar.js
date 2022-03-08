@@ -88,6 +88,14 @@ module.exports = defineSidebarConfig({
                         "lock.md", "mq.md", "rpc.md","transaction.md","zk.md"
                     ]
                 },
+                {
+                    prefix: "bigdata/",
+                    text: "大数据",
+                    collapsable: true,
+                    children: [
+                        "algo.md", "hbase.md", "hdfs.md"
+                    ]
+                },
             ],
         }
     ]
