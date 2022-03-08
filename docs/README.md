@@ -5,6 +5,6 @@ heroText: Vgearen's Document
 tagline:  'Review the old and learn the new'
 actions:
 - text: Get Started 📖
-  link: /java/java-base
+  link: /stack/stack
   type: primary
 ---

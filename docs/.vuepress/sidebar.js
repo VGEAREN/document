@@ -3,6 +3,12 @@ const {defineSidebarConfig} = require("vuepress-theme-hope");
 module.exports = defineSidebarConfig({
     "/": [
         {
+            prefix: "stack/",
+            text: "技术栈",
+            collapsable: true,
+            children: [ "stack.md" ]
+        },
+        {
             prefix: "java/",
             text: "Java",
             collapsable: true,
