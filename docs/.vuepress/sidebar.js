@@ -54,7 +54,8 @@ module.exports = defineSidebarConfig({
                         "innodb_concurrency_control.md",
                         "innodb_transaction.md"],
                 },
-                "mysql_cluster.md"
+                "mysql_cluster.md",
+                "mysql_qa.md"
             ],
         },
         {
