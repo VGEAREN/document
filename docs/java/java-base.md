@@ -220,13 +220,14 @@ char val[] = value;
 > s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
 
 这里说明一下，上面的 s 数组即源码中的 val 数组，是 String 内部维护的一个 char 类型数组。这里我来简单推导一下这个公式：
-
+``` 
 假设 n=3
-i=0 -> h = 31 \* 0 + val\[0\]
-i=1 -> h = 31 \* (31 \* 0 + val\[0\]) + val\[1\]
-i=2 -> h = 31 \* (31 \* (31 \* 0 + val\[0\]) + val\[1\]) + val\[2\]
-h = 31\*31\*31\*0 + 31\*31\*val\[0\] + 31\*val\[1\] + val\[2\]
-h = 31^(n-1)\*val\[0\] + 31^(n-2)\*val\[1\] + val\[2\]
+i=0 -> h = 31 * 0 + val[0]
+i=1 -> h = 31 * (31 * 0 + val[0]) + val[1]
+i=2 -> h = 31 * (31 * (31 * 0 + val[0]) + val[1]) + val[2]
+h = 31*31*31*0 + 31*31*val[0] + 31*val[1] + val[2]
+h = 31^(n-1)*val[0] + 31^(n-2)*val[1] + val[2]
+```
 
 上面的公式包括公式的推导并不是本文的重点，大家了解了解即可。接下来来说说本文的重点，即选择31的理由。从网上的资料来看，一般有如下两个原因：
 
@@ -266,16 +267,16 @@ h = 31^(n-1)\*val\[0\] + 31^(n-2)\*val\[1\] + val\[2\]
 
 计算哈希算法冲突率并不难，比如可以一次性将所有单词的 hash code 算出，并放入 Set 中去除重复值。之后拿单词数减去 set.size() 即可得出冲突数，有了冲突数，冲突率就可以算出来了。当然，如果使用 JDK8 提供的流式计算 API，则可更方便算出，代码片段如下：
 
+``` java
 public static Integer hashCode(String str, Integer multiplier) {
-int hash \= 0;
-for (int i \= 0; i < str.length(); i++) {
-hash = multiplier \* hash + str.charAt(i);
+int hash = 0;
+for (int i = 0; i < str.length(); i++) {
+hash = multiplier * hash + str.charAt(i);
 }
 
     return hash;
 }
 
-``` java
 /**
 * 计算 hash code 冲突率，顺便分析一下 hash code 最大值和最小值，并输出
 * @param multiplier
