@@ -29,7 +29,20 @@ module.exports = defineSidebarConfig({
                 },
                 "java-base.md",
                 "java-question.md",
-                "springboot.md"],
+                {
+                    prefix: "springboot/",
+                    text: "Spring Boot",
+                    collapsable: true,
+                    children: [
+                        "springboot.md"
+                    ]
+                },
+                "CGLib动态代理.md",
+                "Java抽象类.md",
+                "JAVA注解的底层实现.md",
+                "Java类图.md",
+                "JDK动态代理.md"
+            ],
         },
         {
             prefix: "computer_network/",
@@ -107,6 +120,54 @@ module.exports = defineSidebarConfig({
                     ]
                 },
             ],
+        },
+        {
+            prefix: "algorithm/",
+            text: "算法",
+            collapsable: true,
+            children: [
+                "二叉树遍历.md",
+            ]
+        },
+        {
+            prefix: "ide/",
+            text: "IDE",
+            collapsable: true,
+            children: [
+                "IDEA中类图表示.md",
+                "IDEA插件修改.md",
+            ]
+        },
+        {
+            prefix: "frontend/",
+            text: "前端",
+            collapsable: true,
+            children: [
+                "使用compression-webpack-plugin压缩静态资源.md"
+            ]
+        },
+        {
+            prefix: "sroucecode/",
+            text: "源码",
+            collapsable: true,
+            children: [
+                "从源码看PriorityQueue.md"
+            ]
+        },
+        {
+            prefix: "deploy/",
+            text: "部署",
+            collapsable: true,
+            children: [
+                "CentOS7-Firewall常用命令汇总.md",
+                "docker镜像加速.md",
+                "Linux性能监控常用命令.md",
+                "使用Github-Action来自动化构建Maven项目.md",
+                "如何发布自己的Maven包.md",
+                "通过Docker-Compose来部署MinIO.md",
+                "通过Git统计代码的提交量.md",
+            ]
         }
+
     ]
 })
