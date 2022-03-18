@@ -55,7 +55,10 @@ module.exports = defineSidebarConfig({
                         "innodb_transaction.md"],
                 },
                 "mysql_cluster.md",
-                "mysql_qa.md"
+                "mysql_qa.md",
+                "mysql_index.md",
+                "mysql_remark.md",
+                "mysql_rw.md"
             ],
         },
         {
