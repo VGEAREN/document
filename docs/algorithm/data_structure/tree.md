@@ -22,7 +22,7 @@ title: 树
 
 @slidestart
 
-![](/document/images/1.png)
+<img class="r-stretch" src="/document/images/1.png">
 
 ---
 
