@@ -22,11 +22,15 @@ title: 树
 
 @slidestart
 
-<img class="r-stretch" src="/document/images/1.png">
+<section data-background-image="/document/images/1.png"></section>
 
 ---
 
-![](/document/images/1.svg)
+<section data-background-image="/document/images/2.png"></section>
+
+---
+
+<section data-background-image="/document/images/3.png"></section>
 
 
 @slideend
