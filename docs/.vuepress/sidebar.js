@@ -109,7 +109,7 @@ module.exports = defineSidebarConfig({
                     collapsable: true,
                     children: [
                         "cache.md", "consensus.md", "dubbo.md","kafka.md" ,
-                        "lock.md", "mq.md", "rpc.md","transaction.md","zk.md"
+                        "lock.md", "mq.md", "rpc.md","transaction.md","zk.md","分布式理论.md"
                     ]
                 },
                 {
@@ -128,6 +128,14 @@ module.exports = defineSidebarConfig({
             collapsable: true,
             children: [
                 "二叉树遍历.md",
+                {
+                    prefix: "data_structure/",
+                    text: "数据结构",
+                    collapsable: true,
+                    children: [
+                        "tree.md",
+                    ]
+                },
             ]
         },
         {
