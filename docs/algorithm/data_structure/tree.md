@@ -22,11 +22,11 @@ title: 树
 
 @slidestart
 
-![](/document/images/1a38eec444d198d7974cad0f4f4e5aeed2a3147649d4dd53e56f068e3b567efc-图片.png)
+![](/document/images/1.svg)
 
 ---
 
-![](/document/images/1024px-Binary_search_tree.svg.png)
+![](/document/images/1.svg)
 
 
 @slideend
