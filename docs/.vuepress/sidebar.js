@@ -71,7 +71,8 @@ module.exports = defineSidebarConfig({
                 "mysql_qa.md",
                 "mysql_index.md",
                 "mysql_remark.md",
-                "mysql_rw.md"
+                "mysql_rw.md",
+                "mysql汇总.md",
             ],
         },
         {
