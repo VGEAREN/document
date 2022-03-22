@@ -1,0 +1,7 @@
+const e={key:"v-5638eab3",path:"/java/JAVA%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.html",title:"JAVA\u6CE8\u89E3\u7684\u5E95\u5C42\u5B9E\u73B0",lang:"zh-CN",frontmatter:{title:"JAVA\u6CE8\u89E3\u7684\u5E95\u5C42\u5B9E\u73B0",date:"2021-12-11T14:29:40.000Z",category:["\u5F00\u53D1","Java","\u6E90\u7801"],toc:!0,tag:["Java","\u6E90\u7801"]},excerpt:`<h2 id="\u524D\u8A00" tabindex="-1"><a class="header-anchor" href="#\u524D\u8A00" aria-hidden="true">#</a> \u524D\u8A00</h2>
+<p>\u6CE8\u89E3\u7684\u58F0\u660E\u5982\u4E0B\uFF1A</p>
+<blockquote>
+<p>{InterfaceModifier} @interface Identifier AnnotationTypeBody<br>
+\u63A5\u53E3\u4FEE\u9970\u7B26 @interface \u6CE8\u89E3\u6807\u8BC6\u7B26 \u6CE8\u89E3\u7C7B\u578B\u7684\u5185\u5BB9</p>
+</blockquote>
+`,headers:[{level:2,title:"\u524D\u8A00",slug:"\u524D\u8A00",children:[]},{level:2,title:"\u5E95\u5C42\u5B9E\u73B0",slug:"\u5E95\u5C42\u5B9E\u73B0",children:[{level:3,title:"AnnotatedElement",slug:"annotatedelement",children:[]},{level:3,title:"Class.java",slug:"class-java",children:[]},{level:3,title:"AnnotationParser.java",slug:"annotationparser-java",children:[]}]},{level:2,title:"\u603B\u7ED3",slug:"\u603B\u7ED3",children:[]}],git:{createdTime:1647935794e3,updatedTime:1647935794e3,contributors:[{name:"vgearen",email:"vgearen@gmail.com",commits:1}]},readingTime:{minutes:6.22,words:1866},filePathRelative:"java/JAVA\u6CE8\u89E3\u7684\u5E95\u5C42\u5B9E\u73B0.md"};export{e as data};
