@@ -119,7 +119,111 @@ title: 树
 
 
 @slideend
+
+
 ## 平衡二叉树（AVL）
+
+
+AVL树是高度平衡的二叉搜索树。这意味着，AVL 树也是二叉搜索树，但它是平衡树。如果树中每个节点的左右子树的高度之差为 -1、0 或 +1，则称二叉树是平衡的。换句话说，如果每个节点的左右子节点的高度相差 -1、0 或 +1，则称二叉树是平衡的。在 AVL 树中，每个节点都维护一个称为平衡因子的额外信息。 AVL 树由 G.M. 在 1962 年引入。 Adelson-Velsky 和 E.M. Landis。 
+AVL 树的定义如下... 
+> AVL 树是平衡的二叉搜索树。在 AVL 树中，每个节点的平衡因子为 -1、0 或 +1。
+
+节点的平衡因子是该节点左右子树的高度之差。节点的平衡因子是左子树的高度 - 右子树的高度 (OR) 右子树的高度 - 左子树的高度。在下面的解释中，我们计算如下... 
+> 平衡因子 = heightOfLeftSubtree - heightOfRightSubtree
+
+##### Example of AVL Tree
+
+![](./images/AVL Example.png)
+
+
+
+上面的树是一棵二叉搜索树，每个节点都满足平衡因子条件。所以这棵树被称为AVL树。
+
+
+> **每个 AVL 树都是二叉搜索树，但每个二叉搜索树不一定是 AVL 树。**
+
+
+# AVL Tree Rotations
+
+在 AVL 树中，在执行插入和删除等操作后，我们需要检查树中每个节点的平衡因子。如果每个节点都满足平衡因子条件，那么我们结束操作，否则我们必须使其平衡。每当树由于任何操作而变得不平衡时，我们都会使用旋转操作来使树平衡。
+
+旋转操作用于使树平衡。
+> 旋转是向左或向右移动节点以使树平衡的过程。
+
+有**四种**旋转，它们分为**两种类型**。
+
+![AVL Tree Rotations](./images/AVL Tree Rotations.png)
+
+# Single Left Rotation (LL Rotation)
+
+在 LL Rotation 中，每个节点从当前位置向左移动一个位置。为了理解 LL Rotation，让我们考虑 AVL 树中的以下插入操作......
+
+![AVL Tree LL Rotation](./images/AVL Tree LL Rotation.png)
+
+# Single Right Rotation (RR Rotation)
+
+在 RR Rotation 中，每个节点从当前位置向右移动一个位置。为了理解 RR Rotation，让我们考虑 AVL 树中的以下插入操作......
+
+
+![AVL Tree RR Rotation](./images/AVL Tree RR Rotation.png)
+
+# Left Right Rotation (LR Rotation)
+
+LR 旋转是单向左旋转和随后单向右旋转的序列。在 LR Rotation 中，首先，每个节点从当前位置向左移动一个位置，向右移动一个位置。为了理解 LR Rotation，让我们考虑一下 AVL 树中的以下插入操作......
+
+![AVL Tree LR Rotation](./images/AVL Tree LR Rotation.png)
+
+# Right Left Rotation (RL Rotation)
+
+RL Rotation 是单次右旋转，然后是单次左旋转的序列。在 RL Rotation 中，首先每个节点从当前位置向右移动一个位置，向左移动一个位置。为了理解 RL Rotation，让我们考虑 AVL 树中的以下插入操作......
+
+![AVL Tree RL Rotation](./images/AVL Tree RL Rotation.png)
+
+# Operations on an AVL Tree
+
+在 AVL 树上执行以下操作...
+
+1. Search
+2. Insertion
+3. Deletion
+
+
+# Search Operation in AVL Tree
+
+在 AVL 树中，搜索操作的时间复杂度为 **O(log n)**。 AVL 树中的搜索操作类似于二叉搜索树中的搜索操作。我们使用以下步骤在 AVL 树中搜索元素...
+
+- 第 1 步 - 从用户那里读取搜索元素。 
+- 第 2 步 - 将搜索元素与树中根节点的值进行比较。 
+- 第 3 步 - 如果两者都匹配，则显示“找到给定节点！！！”并终止函数 
+- 第 4 步 - 如果两者都不匹配，则检查搜索元素是否小于或大于该节点值。 
+- 第 5 步 - 如果搜索元素较小，则继续左子树中的搜索过程。 
+- 第 6 步 - 如果搜索元素较大，则继续右子树中的搜索过程。 
+- 第 7 步 - 重复相同的操作，直到我们找到确切的元素或直到搜索元素与叶节点进行比较。 
+- 第 8 步 - 如果我们到达与搜索值相等的节点，则显示“找到元素”并终止函数。 
+- 第 9 步 - 如果我们到达叶子节点并且如果它也与搜索元素不匹配，则显示“未找到元素”并终止函数。
+
+
+# Insertion Operation in AVL Tree
+
+在 AVL 树中，插入操作的时间复杂度为 **O(log n)**。在 AVL 树中，总是插入一个新节点作为叶节点。插入操作执行如下...
+
+- 第 1 步 - 使用二叉搜索树插入逻辑将新元素插入树中。 
+- 第 2 步 - 插入后，检查每个节点的**平衡因子**。 
+- 第 3 步 - 如果每个节点的**平衡因子**为 **0 或 1 或 -1**，则进行下一步操作。 
+- 第 4 步 - 如果任何节点的**平衡因子**不是 **0 或 1 或 -1**，则称该树不平衡。在这种情况下，进行适当的旋转使其平衡，然后进行下一步操作。
+
+- Step 1 - Insert the new element into the tree using Binary Search Tree insertion logic.
+- Step 2 - After insertion, check the **Balance Factor** of every node.
+- Step 3 - If the **Balance Factor** of every node is **0 or 1 or -1** then go for next operation.
+- Step 4 - If the **Balance Factor** of any node is other than **0 or 1 or -1** then that tree is said to be imbalanced. In this case, perform suitable **Rotation** to make it balanced and go for next operation.
+
+# Example: Construct an AVL Tree by inserting numbers from 1 to 8.
+
+![AVL Tree Construction](./images/AVL Tree Construction.png)
+
+# Deletion Operation in AVL Tree
+
+AVL Tree 中的删除操作与 BST 中的删除操作类似。但是在每次删除操作之后，我们都需要检查 Balance Factor 条件。如果删除后树是平衡的，则进行下一个操作，否则执行适当的旋转以使树平衡。
 
 ## B树
 
