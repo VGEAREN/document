@@ -120,6 +120,80 @@ title: 树
 
 @slideend
 
+### 代码实现
+``` java
+// Definition for a binary tree node.
+public class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+// 插入
+public TreeNode insert(TreeNode root, int val){
+    if (root == null) {
+        root = new TreeNode(val);
+        return root;
+    }
+
+    if(val < root.val){
+        return insert(root.left, val);
+    }else if(val > root.val){
+        return insert(root.right, val);
+    }
+    return root;
+}
+
+public TreeNode search(TreeNode root, int val) {
+    if (root == null || root.val == val) {
+        return root;
+    }
+    if(val < root.val){
+        return search(root.left, val);
+    }
+
+    return search(root.right, val);
+}
+
+public TreeNode delete(TreeNode root, int val){
+    if(root == null){
+        return null;
+    }
+    if(val < root.val){
+        root.left =  delete(root.left, val);
+    }else if(val > root.val){
+        root.right = delete(root.right, val);
+    } else {
+        if(root.left == null){
+            return root.right;
+        }else if(root.right == null){
+            return root.left;
+        }
+        // 找到右子树的最小值，赋给当前节点
+        root.val = minValue(root.right);
+        // 删除右子树最小值
+        root.right = delete(root.right, root.val);
+    }
+    return root;
+}
+int minValue(TreeNode root)
+{
+    int minv = root.val;
+    while (root.left != null)
+    {
+        minv = root.left.val;
+        root = root.left;
+    }
+    return minv;
+}
+```
 
 ## 平衡二叉树（AVL）
 
@@ -131,7 +205,7 @@ AVL 树的定义如下...
 节点的平衡因子是该节点左右子树的高度之差。节点的平衡因子是左子树的高度 - 右子树的高度 (OR) 右子树的高度 - 左子树的高度。在下面的解释中，我们计算如下... 
 > 平衡因子 = heightOfLeftSubtree - heightOfRightSubtree
 
-##### Example of AVL Tree
+### Example of AVL Tree
 
 ![](./images/AVL_Example.png)
 
@@ -143,7 +217,7 @@ AVL 树的定义如下...
 > **每个 AVL 树都是二叉搜索树，但每个二叉搜索树不一定是 AVL 树。**
 
 
-# AVL Tree Rotations
+### AVL Tree Rotations
 
 在 AVL 树中，在执行插入和删除等操作后，我们需要检查树中每个节点的平衡因子。如果每个节点都满足平衡因子条件，那么我们结束操作，否则我们必须使其平衡。每当树由于任何操作而变得不平衡时，我们都会使用旋转操作来使树平衡。
 
@@ -154,32 +228,32 @@ AVL 树的定义如下...
 
 ![AVL Tree Rotations](./images/AVL_Tree_Rotations.png)
 
-# Single Left Rotation (LL Rotation)
+### Single Left Rotation (LL Rotation)
 
 在 LL Rotation 中，每个节点从当前位置向左移动一个位置。为了理解 LL Rotation，让我们考虑 AVL 树中的以下插入操作......
 
 ![AVL Tree LL Rotation](./images/AVL_Tree_LL_Rotation.png)
 
-# Single Right Rotation (RR Rotation)
+### Single Right Rotation (RR Rotation)
 
 在 RR Rotation 中，每个节点从当前位置向右移动一个位置。为了理解 RR Rotation，让我们考虑 AVL 树中的以下插入操作......
 
 
 ![AVL Tree RR Rotation](./images/AVL_Tree_RR_Rotation.png)
 
-# Left Right Rotation (LR Rotation)
+### Left Right Rotation (LR Rotation)
 
 LR 旋转是单向左旋转和随后单向右旋转的序列。在 LR Rotation 中，首先，每个节点从当前位置向左移动一个位置，向右移动一个位置。为了理解 LR Rotation，让我们考虑一下 AVL 树中的以下插入操作......
 
 ![AVL Tree LR Rotation](./images/AVL_Tree_LR_Rotation.png)
 
-# Right Left Rotation (RL Rotation)
+### Right Left Rotation (RL Rotation)
 
 RL Rotation 是单次右旋转，然后是单次左旋转的序列。在 RL Rotation 中，首先每个节点从当前位置向右移动一个位置，向左移动一个位置。为了理解 RL Rotation，让我们考虑 AVL 树中的以下插入操作......
 
 ![AVL Tree RL Rotation](./images/AVL_Tree_RL_Rotation.png)
 
-# Operations on an AVL Tree
+### Operations on an AVL Tree
 
 在 AVL 树上执行以下操作...
 
@@ -188,7 +262,7 @@ RL Rotation 是单次右旋转，然后是单次左旋转的序列。在 RL Rota
 3. Deletion
 
 
-# Search Operation in AVL Tree
+### Search Operation in AVL Tree
 
 在 AVL 树中，搜索操作的时间复杂度为 **O(log n)**。 AVL 树中的搜索操作类似于二叉搜索树中的搜索操作。我们使用以下步骤在 AVL 树中搜索元素...
 
@@ -203,7 +277,7 @@ RL Rotation 是单次右旋转，然后是单次左旋转的序列。在 RL Rota
 - 第 9 步 - 如果我们到达叶子节点并且如果它也与搜索元素不匹配，则显示“未找到元素”并终止函数。
 
 
-# Insertion Operation in AVL Tree
+### Insertion Operation in AVL Tree
 
 在 AVL 树中，插入操作的时间复杂度为 **O(log n)**。在 AVL 树中，总是插入一个新节点作为叶节点。插入操作执行如下...
 
@@ -217,11 +291,11 @@ RL Rotation 是单次右旋转，然后是单次左旋转的序列。在 RL Rota
 - Step 3 - If the **Balance Factor** of every node is **0 or 1 or -1** then go for next operation.
 - Step 4 - If the **Balance Factor** of any node is other than **0 or 1 or -1** then that tree is said to be imbalanced. In this case, perform suitable **Rotation** to make it balanced and go for next operation.
 
-# Example: Construct an AVL Tree by inserting numbers from 1 to 8.
+### Example: Construct an AVL Tree by inserting numbers from 1 to 8.
 
 ![AVL Tree Construction](./images/AVL_Tree_Construction.png)
 
-# Deletion Operation in AVL Tree
+### Deletion Operation in AVL Tree
 
 AVL Tree 中的删除操作与 BST 中的删除操作类似。但是在每次删除操作之后，我们都需要检查 Balance Factor 条件。如果删除后树是平衡的，则进行下一个操作，否则执行适当的旋转以使树平衡。
 
