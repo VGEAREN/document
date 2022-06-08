@@ -34,7 +34,7 @@ module.exports = defineSidebarConfig({
                     text: "Spring Boot",
                     collapsable: true,
                     children: [
-                        "springboot.md"
+                        "springboot.md","设计模式.md"
                     ]
                 },
                 "CGLib动态代理.md",
