@@ -4,7 +4,7 @@ title: InnoDB 并发控制
 
 ## InnoDB 锁机制 
 
-![](docs/zh/mysql/innodb/images/e86d2bb63f9ecf327e588f352bb26d3b.png)
+![](./images/e86d2bb63f9ecf327e588f352bb26d3b.png)
 
 InnoDB默认使用行锁，实现了两种标准的行锁——共享锁与排他锁；
 

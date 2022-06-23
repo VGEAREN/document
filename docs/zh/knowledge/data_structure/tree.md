@@ -210,7 +210,7 @@ AVL 树的定义如下...
 
 ### Example of AVL Tree
 
-![](docs/zh/algorithm/data_structure/images/AVL_Example.png)
+![](./images/AVL_Example.png)
 
 
 
@@ -229,32 +229,32 @@ AVL 树的定义如下...
 
 有**四种**旋转，它们分为**两种类型**。
 
-![AVL Tree Rotations](docs/zh/algorithm/data_structure/images/AVL_Tree_Rotations.png)
+![AVL Tree Rotations](./images/AVL_Tree_Rotations.png)
 
 ### Single Left Rotation (LL Rotation)
 
 在 LL Rotation 中，每个节点从当前位置向左移动一个位置。为了理解 LL Rotation，让我们考虑 AVL 树中的以下插入操作......
 
-![AVL Tree LL Rotation](docs/zh/algorithm/data_structure/images/AVL_Tree_LL_Rotation.png)
+![AVL Tree LL Rotation](./images/AVL_Tree_LL_Rotation.png)
 
 ### Single Right Rotation (RR Rotation)
 
 在 RR Rotation 中，每个节点从当前位置向右移动一个位置。为了理解 RR Rotation，让我们考虑 AVL 树中的以下插入操作......
 
 
-![AVL Tree RR Rotation](docs/zh/algorithm/data_structure/images/AVL_Tree_RR_Rotation.png)
+![AVL Tree RR Rotation](./images/AVL_Tree_RR_Rotation.png)
 
 ### Left Right Rotation (LR Rotation)
 
 LR 旋转是单向左旋转和随后单向右旋转的序列。在 LR Rotation 中，首先，每个节点从当前位置向左移动一个位置，向右移动一个位置。为了理解 LR Rotation，让我们考虑一下 AVL 树中的以下插入操作......
 
-![AVL Tree LR Rotation](docs/zh/algorithm/data_structure/images/AVL_Tree_LR_Rotation.png)
+![AVL Tree LR Rotation](./images/AVL_Tree_LR_Rotation.png)
 
 ### Right Left Rotation (RL Rotation)
 
 RL Rotation 是单次右旋转，然后是单次左旋转的序列。在 RL Rotation 中，首先每个节点从当前位置向右移动一个位置，向左移动一个位置。为了理解 RL Rotation，让我们考虑 AVL 树中的以下插入操作......
 
-![AVL Tree RL Rotation](docs/zh/algorithm/data_structure/images/AVL_Tree_RL_Rotation.png)
+![AVL Tree RL Rotation](./images/AVL_Tree_RL_Rotation.png)
 
 ### Operations on an AVL Tree
 
@@ -296,7 +296,7 @@ RL Rotation 是单次右旋转，然后是单次左旋转的序列。在 RL Rota
 
 ### Example: Construct an AVL Tree by inserting numbers from 1 to 8.
 
-![AVL Tree Construction](docs/zh/algorithm/data_structure/images/AVL_Tree_Construction.png)
+![AVL Tree Construction](./images/AVL_Tree_Construction.png)
 
 ### Deletion Operation in AVL Tree
 

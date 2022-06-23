@@ -12,7 +12,7 @@ title: 大数据基础算法
 
 　　对于原理来说很简单，**Bit-Map + K个独立 Hash 函数**。将 Hash 函数对应的值的位数组置`1`，**查找时如果发现所有 Hash 函数对应位都是`1`说明存在**。很明显这个过程并不保证查找的结果是 100% 正确的。同时也不支持删除一个已经插入的关键字，因为该关键字对应的位会牵动到其他的关键字。所以一个简单的改进就是 **Counting Bloom filter**，用一个 Counter 数组代替位数组，就可以支持删除了。
 
-![Bloom_Filter](docs/zh/architecture/bigdata/images/Bloom_Filter.png)
+![Bloom_Filter](./images/Bloom_Filter.png)
 
 对于元素个数：$n$，错误率（假阳率）：$P$。我们可以计算：
   - Bit-Map 大小：$m\ge -\frac{n\times ln^P}{(ln^2)^2}$
@@ -193,7 +193,7 @@ Simhash 为每一个内容生成一个整数指纹，其中的关键是把每个
 
 ## 倒排索引(Inverted index)
 
-![874963-20190127184959667-1135956344](docs/zh/architecture/bigdata/images/874963-20190127184959667-1135956344.png)
+![874963-20190127184959667-1135956344](./images/874963-20190127184959667-1135956344.png)
 
 ### 适用范围
 
@@ -259,7 +259,7 @@ T2 = "it is a banana"
 
 **败/胜者树实际上是保存部分数据的比较结果**，以减少新增数据的比较次数，以减少IO。对于无序表 `{49，38，65，97，76，13，27，49}` 创建的完全二叉树如图所示，构建此树的目的是选出无序表中的最小值。
 
-![](docs/zh/architecture/bigdata/images/winner_tree.svg)
+![](./images/winner_tree.svg)
 
 这是一棵 **胜者树** 。因为树中每个非终端结点（除叶子结点之外的其它结点）中的值都表示的是左右孩子相比较后的较小值（谁最小即为胜者）。例如叶子结点 49 和 38 相对比，由于 38 更小，所以其双亲结点中的值保留的是胜者 38。然后用 38 去继续同上层去比较，一直比较到树的根结点。
 
@@ -277,7 +277,7 @@ T2 = "it is a banana"
 
 例如已知初始文件中总共有 24 个记录，假设内存工作区最多可容纳 6 个记录，按照之前的选择排序算法最少也只能分为 4 个初始归并段。而如果使用置换—选择排序，可以实现将 24 个记录分为 3 个初始归并段：
 
-![](docs/zh/architecture/bigdata/images/swap_select.png)
+![](./images/swap_select.png)
 
 置换—选择排序算法的具体操作过程为：
 
@@ -296,7 +296,7 @@ T2 = "it is a banana"
 
 无论是通过等分还是置换-选择排序得到的归并段，如何设置它们的归并顺序，可以使得对外存的访问次数降到最低？现有通过置换选择排序算法所得到的 9 个初始归并段，其长度分别为：`9，30，12，18，3，17，2，6，24`。在对其采用 3-路平衡归并的方式时可能出现如图所示的情况：
 
-![](docs/zh/architecture/bigdata/images/best_merge_tree_1.png)
+![](./images/best_merge_tree_1.png)
 
 > 图中的叶子结点表示初始归并段，各自包含记录的长度用结点的权重来表示；非终端结点表示归并后的临时文件。
 
@@ -310,7 +310,7 @@ $$(9+30+12+18+3+17+2+6+24)\times 2 \times 2 = 484$$
 
 若想使树的带权路径长度最短，就是构造**赫夫曼树**。若对上述 9 个初始归并段构造一棵赫夫曼树作为归并树，如图所示：
 
-![](docs/zh/architecture/bigdata/images/best_merge_tree_2.png)
+![](./images/best_merge_tree_2.png)
 
 归并过程中需要对外存进行IO的次数为：
 
@@ -343,7 +343,7 @@ Trie树的创建要考虑的是父节点如何保存孩子节点，主要有链�
 
 #### 压缩Trie Patricia Tree
 
-![800px-Patricia_trie](docs/zh/architecture/bigdata/images/800px-Patricia_trie.png)
+![800px-Patricia_trie](./images/800px-Patricia_trie.png)
 
 基数树（也叫基数特里树或压缩前缀树）是一种数据结构，是一种更节省空间的Trie（前缀树），其中作为唯一子节点的每个节点都与其父节点合并，**边既可以表示为元素序列又可以表示为单个元素**。
 

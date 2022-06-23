@@ -46,7 +46,7 @@ NameNode 将对文件系统的改动追加保存到本地文件系统上的一�
 
 Secondary NameNode 定期合并 FSImage 和 EditLog 日志，将 EditLog 日志文件大小控制在一个限度下。
 
-![](docs/zh/architecture/bigdata/images/hdfs_secondary_name_node_sync_editlog.png)
+![](./images/hdfs_secondary_name_node_sync_editlog.png)
 
 #### 名称节点的启动
 
@@ -63,7 +63,7 @@ Secondary NameNode 定期合并 FSImage 和 EditLog 日志，将 EditLog 日志�
 
 HDFS 采取主从模型，一个 HDFS 集群包含一个 NameNode 和若干个 DataNode 。名称节点作为中心服务器，负责管理文件系统的命名空间及客户端对文件的访问。
 
-![](docs/zh/architecture/bigdata/images/hdfs_arthticher.png)
+![](./images/hdfs_arthticher.png)
 
 ### 命名空间
 
@@ -73,7 +73,7 @@ HDFS 的命名空间包含块映射、以及相关属性，存储在 FSImage 中
 
 Federation 的设计就是为了解决 HDFS 1.0 中的单一 NameNode 的问题，采用 Federation 的最主要原因是设计实现简单。
 
-![](docs/zh/architecture/bigdata/images/hdfs-federation.png)
+![](./images/hdfs-federation.png)
 
 > block pool 存储在 DataNode 上，并通过 BPOfferService 提供服务
 
@@ -91,7 +91,7 @@ Federation 的核心思想是将一个大的 `namespace` 划分多个子 `namesp
 
 所幸的是，在 Hadoop2.0 中，HDFS NameNode 和 YARN ResourceManger 的单点问题都得到了解决，经过多个版本的迭代和发展，目前已经能用于生产环境。
 
-![](docs/zh/architecture/bigdata/images/hdfs_ha.png)
+![](./images/hdfs_ha.png)
 
 NameNode 的高可用架构主要分为下面几个部分：
 
@@ -103,7 +103,7 @@ NameNode 的高可用架构主要分为下面几个部分：
 
 NameNode 主备切换主要由 ZKFailoverController、HealthMonitor 和 ActiveStandbyElector 这 3 个组件来协同实现：
 
-![](docs/zh/architecture/bigdata/images/hdfs_failover.png)
+![](./images/hdfs_failover.png)
 
 #### HDFS 脑裂问题
 
@@ -118,7 +118,7 @@ NameNode 主备切换主要由 ZKFailoverController、HealthMonitor 和 ActiveSt
 
 上述 HA 方案还有一个明显缺点，那就是第三方存储节点有可能失效，目前社区已经把由 Clouderea 公司实现的基于 QJM 的方案作为默认的共享存储实现。`QJM（Quorum Journal Manager）`本质上是利用 `Paxos` 协议来实现的，QJM 在 `2F+1` 个 JournalNode 上存储 NameNode 的 EditLog ，每次写入操作都通过 `Paxos` 保证写入的一致性，它最多可以允许有 `F` 个 JournalNode 节点同时故障。
 
-![](docs/zh/architecture/bigdata/images/hdfs-ha-qjm.png)
+![](./images/hdfs-ha-qjm.png)
 
 Active NameNode 首先把 EditLog 提交到 JournalNode 集群，然后 Standby NameNode 再从 JournalNode 集群定时同步 EditLog 。还有一点需要注意的是，在 2.0 中不再有 SNN 这个角色了，NameNode 在启动后，会先加载 `FSImage` 文件和共享目录上的 EditLog Segment 文件，之后 NameNode 会启动 EditLogTailer 线程和 StandbyCheckpointer 线程，正式进入 Standby 模式，其中：
 
@@ -150,7 +150,7 @@ HDFS 采用多副本方式对数据进行冗余存储，通常一个数据库的
 2. 容易检查数据错误
 3. 保证数据可靠性
 
-![](docs/zh/architecture/bigdata/images/hdfs_block_save.png)
+![](./images/hdfs_block_save.png)
 
 
 ### 数据存取策略
@@ -213,7 +213,7 @@ HDFS 有备份机制，定时将 FSImage 和 EditLog 备份到 SecondaryNameNode
 
 ### 写数据过程
 
-![](docs/zh/architecture/bigdata/images/hdfs_write_file_process.png)
+![](./images/hdfs_write_file_process.png)
 
 具体过程如下：
 1. Client 调用 `DistributedFileSystem` 对象的 `create` 方法，创建一个文件输出流（FSDataOutputStream）对象；
@@ -228,7 +228,7 @@ HDFS 有备份机制，定时将 FSImage 和 EditLog 备份到 SecondaryNameNode
 
 #### 读数据过程
 
-![](docs/zh/architecture/bigdata/images/hdfs_read_file_process.png)
+![](./images/hdfs_read_file_process.png)
 
 1. Client 通过 `DistributedFileSystem` 对象与集群的 NameNode 进行一次 RPC 远程调用，获取文件 `block` 位置信息；
 2. NameNode 返回存储的每个块的 DataNode 列表；

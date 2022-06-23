@@ -19,7 +19,7 @@ title: 高并发系统设计
 - 读写分离
 - ElasticSearch
 
-![](docs/zh/architecture/concurrent/images/high-concurrency-system-design.png)
+![](./images/high-concurrency-system-design.png)
 
 
 ### 系统拆分

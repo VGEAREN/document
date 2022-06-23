@@ -6,13 +6,13 @@ title: InnoDB 索引
 
 当 InnoDB 存储数据时，它可以使用不同的行格式进行存储；MySQL 5.7 版本支持以下格式的行存储方式：
 
-![](docs/zh/mysql/innodb/images/81407aa14450d2d6fac1a70961880aac.png)
+![](./images/81407aa14450d2d6fac1a70961880aac.png)
 
 > `Antelope` 是 InnoDB 最开始支持的文件格式，它包含两种行格式 `Compact` 和 `Redundant` ，它最开始并没有名字； `Antelope` 的名字是在新的文件格式 `Barracuda` 出现后才起的， `Barracuda` 的出现引入了两种新的行格式 `Compressed` 和 `Dynamic` ；InnoDB 对于文件格式都会向前兼容，而官方文档中也对之后会出现的新文件格式预先定义好了名字：Cheetah、Dragon、Elk 等等。
 
 两种行记录格式 `Compact` 和 `Redundant` 在磁盘上按照以下方式存储：
 
-![](docs/zh/mysql/innodb/images/a18d600fb632031a00937b1e667e446e.png)
+![](./images/a18d600fb632031a00937b1e667e446e.png)
 
 `Compact` 和 `Redundant` 格式最大的不同就是记录格式的第一个部分；在 `Compact` 中，行记录的第一部分倒序存放了一行数据中列的长度（Length），而 `Redundant` 中存的是每一列的偏移量（Offset），从总体上上看， `Compact` 行记录格式相比 `Redundant` 格式能够减少 `20%` 的存储空间。
 
@@ -20,11 +20,11 @@ title: InnoDB 索引
 
 当 InnoDB 使用 `Compact` 或者 `Redundant` 格式存储极长的 `VARCHAR` 或者 `BLOB` 这类大对象时，我们并不会直接将所有的内容都存放在数据页节点中，而是将数据中的前 `768` 个字节存储在数据页中，后面会通过偏移量指向溢出页（off-page），最大768字节的作用是便于创建 **前缀索引**。溢出页（off-page）不存储在 B+tree 中，**使用的是uncompress BLOB page，并且每个字段的溢出都是存储独享**。
 
-![](docs/zh/mysql/innodb/images/19af5612d981bf2ae2ea7d5b5b9b26ac.png)
+![](./images/19af5612d981bf2ae2ea7d5b5b9b26ac.png)
 
 但是当我们使用新的行记录格式 `Compressed` 或者 `Dynamic` 时都只会在行记录中保存 `20` 个字节的指针，实际的数据都会存放在溢出页面中。
 
-![image](docs/zh/mysql/innodb/images/f7dc83f1b5cfb5f428adc404ce3cfa13.png)
+![image](./images/f7dc83f1b5cfb5f428adc404ce3cfa13.png)
 
 当然在实际存储中，可能会对不同长度的 TEXT 和 BLOB 列进行优化。
 
@@ -36,13 +36,13 @@ title: InnoDB 索引
 
 页是 InnoDB 存储引擎管理数据的最小磁盘单位，而 `B-Tree` 节点就是实际存放表中数据的页面，我们在这里将要介绍页是如何组织和存储记录的；首先，一个 InnoDB 页有以下七个部分：
 
-![image](docs/zh/mysql/innodb/images/771f5daaf406ec0990ca339c9a594bec.png)
+![image](./images/771f5daaf406ec0990ca339c9a594bec.png)
 
 每一个页中包含了两对 `header/trailer`：内部的 `Page Header/Page Directory` 关心的是页的状态信息，而 `Fil Header/Fil Trailer` 关心的是记录页的头信息。
 
 在页的头部和尾部之间就是用户记录和空闲空间了，每一个数据页中都包含 `Infimum` 和 `Supremum` 这两个虚拟的记录（可以理解为占位符）， `Infimum` 记录是比该页中任何主键值都要小的值， `Supremum` 是该页中的最大值：
 
-![image](docs/zh/mysql/innodb/images/85f36113b83bba8aa1ceb1d75bc97271.png)
+![image](./images/85f36113b83bba8aa1ceb1d75bc97271.png)
 
 `User Records` 就是整个页面中真正用于存放行记录的部分，而 `Free Space` 就是空余空间了，它是一个链表的数据结构，为了保证插入和删除的效率，整个页面并不会按照主键顺序对所有记录进行排序，它会自动从左侧向右寻找空白节点进行插入，行记录在物理存储上并不是按照顺序的，它们之间的顺序是由 `next_record` 这一指针控制的。
 
@@ -58,7 +58,7 @@ B+树底层的叶子节点为一双向链表，因此 **每个页中至少应该
 
 InnoDB 存储引擎在绝大多数情况下使用 B+ 树建立索引，这是关系型数据库中查找最为常用和有效的索引，但是 **B+ 树索引并不能找到一个给定键对应的具体值，它只能找到数据行对应的页**，然后正如上一节所提到的，数据库把整个页读入到内存中，并在内存中查找具体的数据行。
 
-![](docs/zh/mysql/innodb/images/c60f9c70aa5f25cea0f109f4064e13ab.png)
+![](./images/c60f9c70aa5f25cea0f109f4064e13ab.png)
 
 B+ 树是平衡树，它查找任意节点所耗费的时间都是完全相同的，比较的次数就是 B+ 树的高度；
 
@@ -90,7 +90,7 @@ CREATE TABLE users(
 
 如果使用上面的 SQL 在数据库中创建一张表，B+ 树就会使用 id 作为索引的键，并在叶子节点中存储一条记录中的所有信息。
 
-![](docs/zh/mysql/innodb/images/4bc2f4c58303c2b20751ff20cd692d33.png)
+![](./images/4bc2f4c58303c2b20751ff20cd692d33.png)
 
 > 图中对 B+ 树的描述与真实情况下 B+ 树中的数据结构有一些差别，不过这里想要表达的主要意思是：**聚集索引叶节点中保存的是整条行记录，而不是其中的一部分**。
 
@@ -106,11 +106,11 @@ CREATE TABLE users(
 
 > 一张表一定包含一个聚集索引构成的 B+ 树以及若干辅助索引的构成的 B+ 树。
 
-![](docs/zh/mysql/innodb/images/1bef5c5161044e2cf889574577eef6c9.png)
+![](./images/1bef5c5161044e2cf889574577eef6c9.png)
 
 如果在表 `users` 中存在一个辅助索引 (`first_name, age`)，那么它构成的 B+ 树大致就是上图这样，按照 (first\_name, age) 的字母顺序对表中的数据进行排序，当查找到主键时，再通过聚集索引获取到整条行记录。
 
-![](docs/zh/mysql/innodb/images/2f31d7b8720a113ae5a7ed3c48a1c9d4.png)
+![](./images/2f31d7b8720a113ae5a7ed3c48a1c9d4.png)
 
 上图展示了一个使用辅助索引查找一条表记录的过程：通过辅助索引查找到对应的主键，最后在聚集索引中使用主键获取对应的行记录，这也是通常情况下行记录的查找方式。
 
